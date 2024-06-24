@@ -1,3 +1,5 @@
 export const test =(req,res)=>{
-    res.send("hello jaykant mishra");
+   res.json({
+    messagr:'api route working',
+   });
 };
