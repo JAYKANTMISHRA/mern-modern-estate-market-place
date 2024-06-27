@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -24,7 +25,7 @@ export default function Listing() {
   const [copied, setCopied] = useState(false);
  // const [contact, setContact] = useState(false);
   const params = useParams();
-  //const { currentUser } = useSelector((state) => state.user);
+  const { currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -48,12 +49,12 @@ export default function Listing() {
     fetchListing();
   }, [params.listingId]);
 
-  // useEffect(() => {
-  //   if (listing) {
-  //     console.log('Listing data:', listing);
-  //     console.log('Image URLs:', listing.imageUrls);
-  //   }
-  // }, [listing]);
+  useEffect(() => {
+    if (listing) {
+      // console.log('Listing data:', listing);
+      // console.log('Image URLs:', listing.imageUrls);
+    }
+  }, [listing]);
 
 
   return (
@@ -67,16 +68,20 @@ export default function Listing() {
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
-                <div
-                  className='h-[550px]'
-                  style={{
-                    background: `url(${url}) center no-repeat`,
-                    backgroundSize: 'cover',
-                  }}
-                ></div>
+                {console.log(url)};
+                <div className='  img-center' >
+                  <img
+                  src={url}
+                  alt='listing cover'
+                  className=' object-contain mx-auto h-[550px] flex center '
+                />
+
+
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
+                    
 
       
 
@@ -148,7 +153,7 @@ export default function Listing() {
             </ul>
             {/* {currentUser && listing.userRef !== currentUser._id && !contact && (
               <button
-                onClick={() => setContact(true)}
+               // onClick={() => setContact(true)}
                 className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'
               >
                 Contact landlord
