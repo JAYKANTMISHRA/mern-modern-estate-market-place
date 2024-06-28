@@ -68,7 +68,7 @@ export default function Listing() {
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
-                {console.log(url)};
+               
                 <div className='  img-center' >
                   <img
                   src={url}
